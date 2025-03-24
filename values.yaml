@@ -1,22 +1,24 @@
 app:
   name: customers
   namespace: customers-user1
-  cluster: .apps.cluster-4jb4z.4jb4z.sandbox1586.opentlc.com
+  cluster: {{ gitea_customize_apps_subdomain }}
 
 git:
   branch: master
-  repo: https://gitlab-gitlab.apps.cluster-4jb4z.4jb4z.sandbox1586.opentlc.com/development/my-quarkus-app4.git
+  repo: https://{{ gitea_customize_gitea_endpoint }}/gitea/{{ gitea_customize_lab_username }}-pipeline-gitops.git
   org: development
-  name: my-quarkus-app4
-  host: gitlab-gitlab.apps.cluster-4jb4z.4jb4z.sandbox1586.opentlc.com
+  name: pipeline-gitops
+  host: {{ gitea_customize_gitea_endpoint }}
   token: ''
   webhookSecret: ''
   verify_commits: disabled
 
+lab:
+  username: {{ gitea_customize_lab_username }}
 
 image:
   registry: Quay
   organization: quayadmin
-  host: quay-4jb4z.apps.cluster-4jb4z.4jb4z.sandbox1586.opentlc.com
+  host: {{ gitea_customize_quay_server }}
   name: customers
   tag: v1
