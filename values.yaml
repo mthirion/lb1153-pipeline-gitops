@@ -5,7 +5,7 @@ app:
 
 git:
   branch: master
-  repo: {{ gitea_customize_gitea_endpoint }}/{{ gitea_customize_lab_username }}/my-quarkus-app4.git
+  repo: https://{{ gitea_customize_gitea_endpoint }}/gitea/{{ gitea_customize_lab_username }}-pipeline-gitops.git
   org: development
   name: pipeline-gitops
   host: {{ gitea_customize_gitea_endpoint }}
