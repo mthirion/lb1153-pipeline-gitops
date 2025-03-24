@@ -5,10 +5,10 @@ app:
 
 git:
   branch: master
-  repo: {{ gitea_customize_gitea_server }}/{{ gitea_customize_lab_username }}/my-quarkus-app4.git
+  repo: {{ gitea_customize_gitea_endpoint }}/{{ gitea_customize_lab_username }}/my-quarkus-app4.git
   org: development
   name: pipeline-gitops
-  host: {{ gitea_customize_gitea_server }}
+  host: {{ gitea_customize_gitea_endpoint }}
   token: ''
   webhookSecret: ''
   verify_commits: disabled
