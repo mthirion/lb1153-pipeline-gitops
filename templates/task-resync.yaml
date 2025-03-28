@@ -10,8 +10,8 @@ spec:
   steps:
     - args:
         - >-
-          oc delete pod -n $(params.COMPONENT_ID)-user1 -l
-          app.kubernetes.io/instance=$(params.COMPONENT_ID)-user1
+          oc delete pod -n $(params.COMPONENT_ID)-{{ .Values.lab.username }} -l
+          app.kubernetes.io/instance=$(params.COMPONENT_ID)-{{ .Values.lab.username }}
       command:
         - /bin/bash
         - '-c'

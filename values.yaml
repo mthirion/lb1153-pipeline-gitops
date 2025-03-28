@@ -1,6 +1,6 @@
 app:
   name: customers
-  namespace: customers-user1
+  namespace: {{ .Values.app.name }}{{ .Values.lab.username }}
   cluster: {{ gitea_customize_apps_subdomain }}
 
 git:
