@@ -141,8 +141,7 @@ spec:
         sed ''"$LNN"' '"$JV"'\' workspace/source/src/main/java/org.redhat.janus/ExampleResource.java > /tmp/changed.java
 
         mv /tmp/changed.java workspace/source/src/main/java/org.redhat.janus/ExampleResource.java
-        echo "CHANGED"
-        cat workspace/source/src/main/java/org.redhat.janus/ExampleResource.java
+
         rm /tmp/inject.java 
       securityContext:
         runAsNonRoot: true
