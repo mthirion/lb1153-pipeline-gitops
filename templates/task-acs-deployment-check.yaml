@@ -39,7 +39,7 @@ spec:
     - default: common-password-secret
       name: common_password_secret
       type: string
-    - default: master
+    - default: main
       name: git_repository_revision
       type: string
     - default: 'true'
@@ -56,12 +56,6 @@ spec:
       name: check_output
   steps:
     - image: 'quay.io/redhat-gpte/alpine-git:latest'
-      env:
-      - name: COMMON_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            key: password
-            name: $(params.common_password_secret)
       name: git-checkout
       resources: {}
       script: |
@@ -71,10 +65,10 @@ spec:
 
         if [[ "$(params.verbose)" == "true" ]] ; then
           set -x
-          echo "**** Cloning https://root:$COMMON_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops into $(pwd)/repository"
+          echo "**** Cloning https://$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops into $(pwd)/repository"
         fi
 
-        git clone "https://root:$COMMON_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops" $(pwd)/repository
+        git clone "https://$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops" $(pwd)/repository
         cd repository
         git checkout "$(params.git_repository_revision)"
       volumeMounts:
