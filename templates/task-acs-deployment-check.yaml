@@ -70,7 +70,7 @@ spec:
 
         git clone "https://$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops" $(pwd)/repository
         cd repository
-        git checkout "$(params.git_repository_revision)"
+        #git checkout "$(params.git_repository_revision)"
       volumeMounts:
         - mountPath: /workspace/repository
           name: repository
