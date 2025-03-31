@@ -69,7 +69,7 @@ spec:
         fi
 
         git clone "https://$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops" $(pwd)/repository
-        cd repository
+        #cd repository
         #git checkout "$(params.git_repository_revision)"
       volumeMounts:
         - mountPath: /workspace/repository
@@ -83,6 +83,7 @@ spec:
 
         set -eu -o pipefail
 
+        cd repository
         helm template --dry-run . | awk -vout=out -F": " '$0~/^# Source: /{file=out"/"$2; print "Creating "file; system ("mkdir -p $(dirname "file"); echo -n "" > "file)} $0!~/^#/ && $0!="---"{print $0 >> file}'
       volumeMounts:
         - mountPath: /workspace/repository
