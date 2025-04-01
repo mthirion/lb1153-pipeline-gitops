@@ -132,6 +132,11 @@ spec:
           </mirror>"
           sed -i "s|<!-- ### mirrors from ENV ### -->|$xml|" $(workspaces.maven-settings.path)/settings.xml
         fi
+
+
+        # ==============================================
+        # HEY HEY --- ARE YOU TRYING TO FIND ME ?  -----
+        # ==============================================
         
         LNN=`grep -wn } workspace/source/src/main/java/org.redhat.janus/ExampleResource.java | tail -n 1 | cut -d: -f1`
         LNN+=i
