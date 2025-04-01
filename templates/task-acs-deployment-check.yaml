@@ -42,6 +42,9 @@ spec:
     - default: main
       name: git_repository_revision
       type: string
+    - default: {{ .Values.lab.username }}
+      name: user
+      type: string      
     - default: 'true'
       name: verbose
       type: string
@@ -65,10 +68,10 @@ spec:
 
         if [[ "$(params.verbose)" == "true" ]] ; then
           set -x
-          echo "**** Cloning https://$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops into $(pwd)/repository"
+          echo "**** Cloning https://$(params.git_host)/$(params.git_owner)/$(params.user)-$(params.component_id)-gitops into $(pwd)/repository"
         fi
 
-        git clone "https://$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops" $(pwd)/repository
+        git clone "https://$(params.git_host)/$(params.git_owner)/$(params.user)-$(params.component_id)-gitops" $(pwd)/repository
         #cd repository
         #git checkout "$(params.git_repository_revision)"
       volumeMounts:
