@@ -1,7 +1,7 @@
 app:
   name: customers
   namespace: customers-{{ gitea_customize_lab_username }}
-  cluster: {{ gitea_customize_apps_subdomain }}
+  cluster: .{{ gitea_customize_apps_subdomain }}
 
 git:
   branch: master
