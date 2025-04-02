@@ -20,5 +20,5 @@ image:
   registry: Quay
   organization: quayadmin
   host: {{ gitea_customize_quay_server }}
-  name: customers
+  name: customers-{{ gitea_customize_lab_username }}
   tag: v1
