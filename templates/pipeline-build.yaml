@@ -97,6 +97,7 @@ spec:
         - name: maven-settings
           workspace: maven-settings
     - name: scan-source
+      retries: 5
       params:
       - name: sonarqubeHostUrl
         value: $(params.sonarqube-host-url)
@@ -113,6 +114,7 @@ spec:
       - name: repository
         workspace: source-folder
     - name: build-sign-image
+      retries: 5
       params:
       - name: IMAGE
         value: $(params.output-image)
@@ -125,6 +127,7 @@ spec:
       - name: source
         workspace: source-folder
     - name: upload-sbom-to-tpa
+      retries: 5
       runAfter:
       - build-sign-image
       taskRef:
@@ -137,6 +140,7 @@ spec:
       - name: sboms
         workspace: source-folder
     - name: upload-sbom-to-cyclonedx-repo
+      retries: 5
       params:
       - name: cyclonedxHostUrl
         value: $(params.cyclonedx-host-url)
@@ -151,6 +155,7 @@ spec:
       - name: repository
         workspace: source-folder
     - name: acs-image-check
+      retries: 5
       params:
       - name: rox_central_endpoint
         value: $(params.stackrox-endpoint)
@@ -172,6 +177,7 @@ spec:
       - name: reports
         workspace: reports
     - name: acs-image-scan
+      retries: 5
       params:
       - name: rox_central_endpoint
         value: $(params.stackrox-endpoint)
@@ -193,6 +199,7 @@ spec:
       - name: reports
         workspace: reports
     - name: acs-deploy-check
+      retries: 5
       params:
       - name: rox_central_endpoint
         value: $(params.stackrox-endpoint)
@@ -218,6 +225,7 @@ spec:
       - name: reports
         workspace: reports
     - name: query-rekor-signed-provenance
+      retries: 5
       params:
       - name: imageDigest
         value: $(tasks.build-sign-image.results.IMAGE_DIGEST)
@@ -231,6 +239,7 @@ spec:
       - acs-image-scan
       - acs-deploy-check
     - name: resync
+      retries: 5
       params:
       - name: COMPONENT_ID
         value: $(params.component-id)
