@@ -66,14 +66,9 @@ spec:
 
         set -eu -o pipefail
 
-        if [[ "$(params.verbose)" == "true" ]] ; then
-          set -x
-          echo "**** Cloning https://$(params.git_host)/$(params.git_owner)/$(params.user)-$(params.component_id)-gitops into $(pwd)/repository"
-        fi
+        sh +v
 
         git clone "https://$GITEA_USERNAME:$GITEA_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.user)-$(params.component_id)-gitops" $(pwd)/repository
-        #cd repository
-        #git checkout "$(params.git_repository_revision)"
       env:
       - name: GITEA_USERNAME
         valueFrom:
