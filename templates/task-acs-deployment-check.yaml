@@ -36,9 +36,6 @@ spec:
       description: The name of the component
       name: component_id
       type: string
-    - default: common-password-secret
-      name: common_password_secret
-      type: string
     - default: main
       name: git_repository_revision
       type: string
@@ -68,18 +65,13 @@ spec:
 
         sh +v
 
-        git clone "https://$GITEA_USERNAME:$GITEA_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.user)-$(params.component_id)-gitops" $(pwd)/repository
+        git clone "https://$(params.user):$GITEA_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.user)-$(params.component_id)-gitops" $(pwd)/repository
       env:
-      - name: GITEA_USERNAME
-        valueFrom:
-          secretKeyRef:
-            key: username
-            name: gitea-clone-secret
       - name: GITEA_PASSWORD
         valueFrom:
           secretKeyRef:
             key: password
-            name: gitea-clone-secret
+            name: common-password-secret
       volumeMounts:
         - mountPath: /workspace/repository
           name: repository
